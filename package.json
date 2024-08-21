@@ -2,6 +2,7 @@
   "name": "my-typescript-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://symptom-care-backend.vercel.app",
   "main": "src/index.tsx",
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^9.0.0",
