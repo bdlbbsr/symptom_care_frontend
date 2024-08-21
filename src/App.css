@@ -1,0 +1,188 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-family: "Calibri", "Arial", sans-serif;
+  line-height: 1.5;
+  color: #000;
+}
+p{font-size: 1.3rem;}
+h1{font-size: 2.5rem;}
+h2{font-size: 2rem;}
+h3{font-size: 1.6rem;}
+h4{font-size: 1.4rem;}
+.searchDiv{
+  width: 100vw;
+  height: 90vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.uploadBtn{background-color: #000; color: #fff; border: 0; padding: 10px 20px; border-radius: 20px; margin-top: 7px;position: absolute; right: 10px; cursor: pointer;}
+.uploadBtn:hover{background-color: #0084ff;}
+.footer{ width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;padding: 1rem 2rem;}
+
+.search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  display: inline-block;
+}
+.input-search{
+  height: 80px;
+  width: 80px;
+  border-style: none;
+  padding: 10px 0;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 50px;
+  transition: all .5s ease-in-out;
+  background-color: #0084ff;
+  padding-right: 80px;
+  color:#000;
+}
+.input-search::placeholder{
+  color:rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search{
+  width: 80px;
+  height: 80px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 80%;
+  position: absolute;
+  right: 0px;
+  color:#fff ;
+  background-color:transparent;
+  pointer-events: painted;  
+}
+.btn-search:focus{
+  color:#1843b3 ;
+}
+
+/* .btn-search:not(:focus){
+  color:red;
+} */
+
+.focusRemoved, .searchPageIcon{
+  color:#0084ff ;
+}
+
+ 
+.btn-search:focus ~ .input-search{
+  width: 700px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(43, 43, 43, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+.input-search:focus{
+  width: 700px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(43, 43, 43, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.inner-input-search{
+  width: 700px;
+  height: 80px;
+  border-style: none;
+  border-radius: 0px;
+  font-size: 1.5rem;
+  padding-right: 80px;
+  font-weight: normal;
+  outline: none;
+  color: #000;
+  background-color: #fff;
+  border-bottom:1px solid rgba(43, 43, 43, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.footerNav a{margin: 0 1rem; color: #999;}
+.logoTxt{color: #666;}
+.backIcon{position: absolute; right: 2rem; top: 1rem; }
+.btn-back{border: 0; background: transparent; outline: 0; cursor: pointer;}
+.detailInfo{height: 90vh; padding: 2rem;}
+.detailInfo h1{font-size: 2.5rem; color: #222; margin: 0;}
+.detailInfo p{font-size: 1.5rem; color: #333;}
+.scrollMiddle{overflow-y: auto;
+  overflow-x: hidden;
+  
+}
+
+.searchResult{height: 80vh; padding: 2rem;}
+.contentDiv{height: 90vh; padding: 2rem;width: 100%;}
+.articleListCnr h2{font-size: 1.6rem; margin: 0 0 0.5rem 0; color: #222; line-height: 1;}
+.articleListCnr:hover h2{color: #0084ff;}
+.articleListCnr p{font-size: 1.3rem; margin:0; color: #333;}
+.searchInputTop{height: 10vh; position: sticky; top: 0; text-align: center; background-color: #fff;}
+.leftColumn{width: 75%;}
+.rightColumn{width: 25%; padding:0 1rem;}
+article figure{margin: 1rem 0;}
+.articleImg{max-width: 100%; height: auto;}
+.articleListCnr{display: flex; align-items: start; gap: 1rem; margin-bottom: 2rem; cursor: pointer;font-size: 1.3rem;}
+.articleListCnr img{width: 170px; height:125px; border-radius: 5px; margin: 0; padding: 0;}
+.articleListCnr figure{margin: 0; padding: 0;}
+.postBtn{background-color: #1843b3; border: 0; color: #fff; font-size: 2rem; cursor: pointer; padding: 1rem 3rem;}
+.postBtn:hover{background-color: #0c2564; }
+.searchCnr{display: flex;}
+li{font-size: 1.5rem;}
+
+.scrollMiddle::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+/* Define the thumb style */
+.scrollMiddle::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+/* Define the track style */
+.scrollMiddle::-webkit-scrollbar-track {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+}
+/* Define the button style */
+.scrollMiddle::-webkit-scrollbar-button {
+  background-color: #444;
+  border-radius: 5px;
+}
+/* Define the button style when being hovered over */
+.scrollMiddle::-webkit-scrollbar-button:hover {
+  background-color: #999999;
+}
+
+.lgoinDv{width: 500px; margin: 0 auto;}
+.doctorLst{display: flex; margin-top: 2rem; gap: 12px;}
+.doctorThumb{width: 150px;}
+.doctorLst h2{margin: 0; padding: 0; line-height: 1; font-size: 1.3rem;}
+.doctorsColumn{height: 80vh;}
+form .field input[type="file"]{padding-top: 12px;}
+.editorFieldHeight{ min-height: 350px!important;}
+.ck-editor__editable_inline {
+  min-height: 300px;
+}
+.loginCnr{ width: 100%; margin: 0 auto; display: inline;}
+.loginCnr .leftSide{width: 50%; display: inline-block; vertical-align: top;}
+.loginCnr .righttSide{width: 50%; display: inline-block;vertical-align: top;}
