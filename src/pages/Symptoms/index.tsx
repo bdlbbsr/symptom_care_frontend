@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useRef, useState, Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import noImage from "../../assets/no-image.svg";
-import parse from "html-react-parser";
 import BackButton from "../../components/BackButton";
 import Select from "react-select";
 import { useAuth } from "../../services/AuthContext";
@@ -218,6 +217,10 @@ const Symptoms: FC<SearchProps> = ({ searchState, setSearchState }) => {
     } else {
       navigate(`/login`);
     }
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (

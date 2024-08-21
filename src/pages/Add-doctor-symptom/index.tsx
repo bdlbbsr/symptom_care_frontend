@@ -1,19 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import {
-  ClassicEditor,
-  Bold,
-  Essentials,
-  Heading,
-  Indent,
-  IndentBlock,
-  Italic,
-  Link,
-  List,
-  MediaEmbed,
-  Paragraph,
-  Table,
-  Undo
+  ClassicEditor 
 } from 'ckeditor5';
 import BackButton from '../../components/BackButton';
 import { useAuth } from '../../services/AuthContext';
@@ -42,7 +30,7 @@ const AddDoctorSymptom: React.FC = () => {
     department: '',
   });
 
-  const departmentNames: any[] = useMemo(() => [], []);
+  // const departmentNames: any[] = useMemo(() => [], []);
 
   // const getDepartmentsName = async () => {
   //   try {

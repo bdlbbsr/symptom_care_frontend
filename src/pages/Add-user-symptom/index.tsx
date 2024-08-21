@@ -9,7 +9,6 @@ const AddUserSymptom = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [message, setMessage] = useState('');
   const [symptomPhoto, setSymptomPhoto] = useState(null);
-  const [departmentNames, setDepartmentNames] = useState([]); 
   const [departments, setDepartments] = useState<any>([]);
   const [formData, setFormData] = useState({
     name: '',

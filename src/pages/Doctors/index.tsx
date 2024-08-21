@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import parse from "html-react-parser";
 import BackButton from "../../components/BackButton";
 import Select from "react-select";
 import noImage from "../../assets/no-image.svg";

@@ -20,11 +20,11 @@ type OptionType = {
   label: string;
 };
 
-const countryOptions: OptionType[] = [
-  { value: "india", label: "India" },
-  { value: "usa", label: "USA" },
-  { value: "australia", label: "Australia" },
-];
+// const countryOptions: OptionType[] = [
+//   { value: "india", label: "India" },
+//   { value: "usa", label: "USA" },
+//   { value: "australia", label: "Australia" },
+// ];
 
 const roleOptions: OptionType[] = [
   { value: "user", label: "User" },
@@ -54,11 +54,11 @@ function Signup() {
     }
   };
 
-  const handleCountryChange = (option: OptionType | null) => {
-    if (option) {
-      setValue('country', option.value);
-    }
-  };
+  // const handleCountryChange = (option: OptionType | null) => {
+  //   if (option) {
+  //     setValue('country', option.value);
+  //   }
+  // };
 
   const newUserRegister = async (data: FormData) => {
     try {
