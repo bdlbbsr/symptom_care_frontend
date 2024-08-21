@@ -8,28 +8,33 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const CompressionPlugin = require("compression-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 import 'webpack-dev-server';
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 
 const webpackConfig = (env:any): Configuration => {
 
-    const isProduction = env.NODE_ENV === 'production';
+    const isProduction = env.production === true;
     const envFile = isProduction ? '.env' : '.env';
     const envPath = path.resolve(__dirname, envFile);
     const envVars = require('dotenv').config({ path: envPath }).parsed || {};
 
     return {
-
+    mode: isProduction ? "production" : 'development',
     entry: "./src/index.tsx",
-    ...(env.production || !env.development ? {} : {devtool: "eval-source-map"}),
+    // ...(env.production || !env.development ? {} : {devtool: "eval-source-map"}),
+    devtool: (env.development === true) ? 'eval-source-map' : false,
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         plugins: [new TsconfigPathsPlugin()]
     },
     output: {
-        path: path.join(__dirname, "/dist"),
-        filename: "build.js"
+        filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
@@ -43,7 +48,7 @@ const webpackConfig = (env:any): Configuration => {
             },
            
                 // {
-                //   test: /\.(js|jsx)$/,
+                //   test: /\.(ts|tsx)$/,
                 //   exclude: /node_modules/,
                 //   use: {
                 //     loader: "babel-loader",
@@ -88,6 +93,7 @@ const webpackConfig = (env:any): Configuration => {
             new CleanWebpackPlugin(),
             new MiniCssExtractPlugin(),
             new RemoveEmptyScriptsPlugin(),
+            new BundleAnalyzerPlugin(),
         
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(envVars),
@@ -96,11 +102,21 @@ const webpackConfig = (env:any): Configuration => {
             "process.env.VERSION": JSON.stringify(require("./package.json").version)
         }),
         new ForkTsCheckerWebpackPlugin(),
-        new ESLintPlugin({files: "./src/**/*.{ts,tsx,js,jsx}"})
+        new ESLintPlugin({files: "./src/**/*.{ts,tsx,js,jsx}"}),
+        new CompressionPlugin({
+          // Be very carefully with 'true', sometimes bug happens
+          deleteOriginalAssets: false,
+          algorithm: 'gzip',
+          test: /\.(ts|tsx|js|jsx|css|html|svg|png|jpg|jpeg)$/,
+        }),
     ],
     optimization: {
         minimize: true,
-        minimizer: [new CssMinimizerPlugin()],
+        minimizer: [
+          new CssMinimizerPlugin(),
+          // new TerserPlugin(),
+        ],
+        splitChunks: {chunks: 'all'},
       },
       devServer: {
         static: {
@@ -112,7 +128,7 @@ const webpackConfig = (env:any): Configuration => {
         hot: true,
         port: 3000
       },
-    mode: "production",
+    
 }};
 
 export default webpackConfig;
