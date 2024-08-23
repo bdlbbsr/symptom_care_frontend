@@ -168,6 +168,12 @@ const Symptoms: FC<SearchProps> = ({ searchState, setSearchState }) => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearchClick();
+    }
+  };
+
   const handleDepartmentChange = (option: { value: string; label: string } | null) => {
     setSelectedDepart(option);
   };
@@ -246,6 +252,7 @@ const Symptoms: FC<SearchProps> = ({ searchState, setSearchState }) => {
             onChange={handleInputChange}
             value={search || ""}
             ref={searchInputRef}
+            onKeyDown ={handleKeyPress}
             required
           />
         </div>

@@ -21,6 +21,12 @@ const Home: FC = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
+  };
+
   const handleFocus = () => { 
     setIsFocused(true); 
   }; 
@@ -51,6 +57,7 @@ const Home: FC = () => {
           className="input-search"
           placeholder="Search symptom..."
           onChange={handleChange}
+          onKeyDown ={handleKeyPress}
           onFocus={handleFocus}
           onBlur={handleBlur} 
         />
