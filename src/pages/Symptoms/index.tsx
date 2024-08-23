@@ -220,7 +220,7 @@ const Symptoms: FC<SearchProps> = ({ searchState, setSearchState }) => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="searchResult">Loading...</div>;
   }
 
   return (

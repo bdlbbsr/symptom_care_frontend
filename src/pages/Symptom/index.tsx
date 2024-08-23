@@ -126,11 +126,11 @@ const Symptom = () => {
   }, [userLoc, department]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="searchResult">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="searchResult">Error: {error}</div>;
   }
 
   if (!info) {
