@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import noImage from "../../assets/no-image.svg";
+import loader from "../../assets/loader.webp";
 import parse from "html-react-parser";
 
 interface InfoDetails {
@@ -126,11 +127,11 @@ const Symptom = () => {
   }, [userLoc, department]);
 
   if (loading) {
-    return <div className="searchResult">Loading...</div>;
+    return <div className="searchResult loaderCnr"><img src={loader} width={100} height={100} alt="Loading" /></div>;
   }
 
   if (error) {
-    return <div className="searchResult">Error: {error}</div>;
+    return <div className="searchResult loaderCnr">Error: {error}</div>;
   }
 
   if (!info) {

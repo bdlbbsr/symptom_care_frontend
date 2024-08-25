@@ -4,6 +4,7 @@ import noImage from "../../assets/no-image.svg";
 import BackButton from "../../components/BackButton";
 import Select from "react-select";
 import { useAuth } from "../../services/AuthContext";
+import loader from "../../assets/loader.webp";
 
 interface InfoArray {
   _id: number;
@@ -226,7 +227,7 @@ const Symptoms: FC<SearchProps> = ({ searchState, setSearchState }) => {
   }
 
   if (loading) {
-    return <div className="searchResult">Loading...</div>;
+    return <div className="searchResult loaderCnr"><img src={loader} width={100} height={100} alt="Loading" /></div>;
   }
 
   return (

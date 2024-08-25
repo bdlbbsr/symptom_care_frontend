@@ -1,4 +1,4 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useState, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "../../components/Navigation/ProtectedRoute";
 
@@ -22,7 +22,7 @@ interface InfoArray {
   name: string;
   description: string;
   thumbnail: string;
-  department:string
+  department: string;
 }
 
 export const Navigation = () => {
@@ -37,111 +37,61 @@ export const Navigation = () => {
   });
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Home />}
-      />
-      <Route
-        path="symptoms/:id"
-        element={
-          <Symptoms
-            searchState={searchState}
-            setSearchState={setSearchState}
+    <main role="main" aria-label="Main content">
+      <Suspense fallback={<div aria-live="polite">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="symptoms/:id"
+            element={
+              <Symptoms searchState={searchState} setSearchState={setSearchState} />
+            }
           />
-        }
-      />
-      <Route
-        path="symptom/:name"
-        element={<Symptom />}
-      />
-      <Route
-        path="about"
-        element={<About />}
-      />
-      <Route
-        path="contact"
-        element={<Contact />}
-      />
-      <Route
-        path="login"
-        element={<Login />}
-      />
-      <Route
-        path="register"
-        element={<Signup />}
-      />
-      <Route
-        path="departments"
-        element={<Departments />}
-      />
-      <Route
-        path="doctors"
-        element={<Doctors />}
-      />
-       
-       
+          <Route path="symptom/:name" element={<Symptom />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Signup />} />
+          <Route path="departments" element={<Departments />} />
+          <Route path="doctors" element={<Doctors />} />
 
-      <Route
-        path="account"
-        element={
-          <ProtectedRoute
-            element={<Account />}
-            roles={["user", "admin", "doctor"]}
+          <Route
+            path="account"
+            element={
+              <ProtectedRoute
+                element={<Account />}
+                roles={["user", "admin", "doctor"]}
+              />
+            }
           />
-        }
-      />
 
-      <Route
-        path="add-symptom"
-        element={
-          <ProtectedRoute
-            element={<AddSymptom />}
-            roles={["admin"]}
+          <Route
+            path="add-symptom"
+            element={
+              <ProtectedRoute element={<AddSymptom />} roles={["admin"]} />
+            }
           />
-        }
-      />
 
-      <Route
-        path="add-symptom-name"
-        element={
-          <ProtectedRoute
-            element={<AddUserSymptom />}
-            roles={["user", "admin"]}
+          <Route
+            path="add-symptom-name"
+            element={
+              <ProtectedRoute element={<AddUserSymptom />} roles={["user", "admin"]} />
+            }
           />
-        }
-      />
 
-      <Route
-        path="add-symptom-description"
-        element={
-          <ProtectedRoute
-            element={<AddDoctorSymptom />}
-            roles={["doctor"]}
+          <Route
+            path="add-symptom-description"
+            element={
+              <ProtectedRoute
+                element={<AddDoctorSymptom />}
+                roles={["doctor"]}
+              />
+            }
           />
-        }
-      />
 
-      {/* https://medium.com/@siva.veeravarapu/role-based-authorization-and-authentication-in-react-with-auth-handlers-specific-role-based-and-466c4483a2fb */}
-      {/* <Route element={<ProtectedRoute />}>
-      <Route
-        path="add-symptom"
-        element={<AddSymptom />}
-      />
-      <Route
-        path="add-symptom-name"
-        element={<AddUserSymptom />}
-      />
-      <Route
-        path="add-symptom-description"
-        element={<AddDoctorSymptom />}
-      />
-      </Route> */}
-
-      <Route
-        path="*"
-        element={<NotFound />}
-      />
-    </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </main>
   );
 };

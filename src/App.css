@@ -148,6 +148,9 @@ article figure{margin: 1rem 0;}
 .postBtn:hover{background-color: #0c2564; }
 .searchCnr{display: flex;}
 li{font-size: 1.5rem;}
+.loaderCnr{display: flex;
+  justify-content: center;
+  align-items: center;}
 
 .scrollMiddle::-webkit-scrollbar {
   width: 4px;

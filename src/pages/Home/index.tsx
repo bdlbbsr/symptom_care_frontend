@@ -4,62 +4,63 @@ import { debounce } from "../../services/debounce"; // Adjust the import path as
 
 const Home: FC = () => {
   const navigate = useNavigate();
-  const [isFocused, setIsFocused] = useState(false); 
+  const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
 
-  // Use the custom debounce function
+  // Debounce search input change
   const handleChange = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   }, 300);
 
-  const handleClick = () => {
-    if (search) {
+  // Navigate to the search results page on button click or Enter key press
+  const handleSearch = () => {
+    if (search.trim()) {
       const searchKeyword = search.trim().replace(/\s+/g, '-').toLowerCase();
       navigate(`/symptoms/${searchKeyword}`);
     } else {
-      alert("Enter search keywords");
+      alert("Please enter search keywords");
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleClick();
+      handleSearch();
     }
   };
 
-  const handleFocus = () => { 
-    setIsFocused(true); 
-  }; 
-
-  const handleBlur = () => { 
-    setIsFocused(false); 
-  };
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
 
   return (
     <div className="searchDiv">
       <div className="search-box">
         <button
-          onClick={handleClick}
+          onClick={handleSearch}
           className={`btn-search ${isFocused ? 'focusRemoved' : 'focusAdded'}`}
-          title="Search Symptoms">
-           <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              fill="currentColor"
-              className="bi bi-search iconClr"
-              viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-            </svg>
+          title="Search Symptoms"
+          aria-label="Search symptoms"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            fill="currentColor"
+            className="bi bi-search iconClr"
+            viewBox="0 0 16 16"
+            aria-hidden="true"  // This hides the SVG from screen readers
+          >
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
         </button>
         <input
           type="text"
           className="input-search"
-          placeholder="Search symptom..."
+          placeholder="Search symptom... for ex. pain"
           onChange={handleChange}
-          onKeyDown ={handleKeyPress}
+          onKeyDown={handleKeyPress}
           onFocus={handleFocus}
-          onBlur={handleBlur} 
+          onBlur={handleBlur}
+          aria-label="Search for symptoms"
         />
       </div>
     </div>
